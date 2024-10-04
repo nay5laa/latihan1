@@ -10,7 +10,7 @@
     <h3>Tambah Pegawai</h3>
     <form action="proses_tambah_pegawai.php" method="post">
         NIK :
-        <input type="text" name="nik" value="" class="form-control">
+        <input type="text" name="nik_pegawai" value="" class="form-control">
         <br>
 
         Nama Pegawai : 

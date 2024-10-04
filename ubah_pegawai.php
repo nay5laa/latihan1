@@ -7,15 +7,24 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
 </head>
 <body>
+    <?php
+        session_start();
+            if ($_SESSION['status_login']!=true) {
+                header('location: login.php');
+            }
+    ?>
     <?php 
     include "connection.php";
 
     $qry_get_pegawai=mysqli_query($conn, "select * from pegawai where id_pegawai = '".$_GET['id_pegawai']."'");
     $dt_pegawai=mysqli_fetch_array($qry_get_pegawai);
     ?>
-    <h3>Tambah Pegawai</h3>
-    <form action="proses_tambah_siswa.php" method="post">
+    <h3>Ubah Pegawai</h3>
+    <form action="proses_ubah_pegawai.php" method="post">
         <input type="hidden" name="id_pegawai" value="<?=$dt_pegawai['id_pegawai']?>">
+
+        NIK :
+        <input type="text" name="nik_pegawai" value="<?=$dt_pegawai['nik_pegawai']?>" class="form-control">
         
         Nama Pegawai :
         <input type="text" name="nama_pegawai" value="<?=$dt_pegawai['nama_pegawai']?>" class="form-control">
@@ -69,7 +78,7 @@
         <br>
 
         Username : 
-        <input type="text" name="username" value="<?=$dt_pegawai['email']?>" class="form-control">
+        <input type="text" name="username" value="<?=$dt_pegawai['username']?>" class="form-control">
         <br>
 
         Password : 

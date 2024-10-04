@@ -2,7 +2,7 @@
 
     if ($_POST) {
         $id_pegawai = $_POST['id_pegawai'];
-        $nik = $_POST['nik'];
+        $nik_pegawai = $_POST['nik_pegawai'];
         $nama_pegawai = $_POST['nama_pegawai'];
         $alamat = $_POST['alamat'];
         $gender = $_POST['gender'];
@@ -11,26 +11,26 @@
         $username = $_POST['username'];
         $password = $_POST['password'];
 
-        if (empty ($nik)) {
+        if (empty($nik_pegawai)) {
             echo "<script> alert ('NIK tidak boleh kosong.');location.href='tambah_pegawai.php';</script>";
         }
 
-        else if (empty ($nama_pegawai)) {
+        else if (empty($nama_pegawai)) {
             echo "<script> alert ('Nama Pegawai tidak boleh kosong.');location.href='tambah_pegawai.php';</script>";
         }
 
-        else if (empty ($username)) {
+        else if (empty($username)) {
             echo "<script> alert ('Username tidak boleh kosong.');location.href='tambah_pegawai.php';</script>";
         }
 
         else {
             include "connection.php";
 
-            if (empty ($password)) {
-                $update = mysqli_query ($conn, "update pegawai set nik='".$nik"', nama_pegawai='".$nama_pegawai."', alamat='".$alamat."', gender='".$gender."', no_telp='".$no_telp."', id_jabatan='".$id_jabatan."', username='".$username."' where id_pegawai = '".$id_pegawai."'") die (mysqli_error($conn));
+            if (empty($password)) {
+                $update=mysqli_query($conn, "UPDATE pegawai set nama_pegawai='".$nama_pegawai."', nik_pegawai='".$nik_pegawai."', alamat='".$alamat."', gender='".$gender."', no_telp='".$no_telp."', id_jabatan='".$id_jabatan."', username='".$username."' where id_pegawai = '".$id_pegawai."'") or die (mysqli_error($conn));
 
                     if ($update) {
-                        echo "<script> alert ('Sukses update Pegawai.');location.href='ubah_pegawai.php?id_pegawai=".$id_pegawai."';</script>";
+                        echo "<script> alert ('Sukses update Pegawai.');location.href='tampil_pegawai.php?id_pegawai=".$id_pegawai."';</script>";
                     }
 
                     else {
@@ -39,7 +39,7 @@
             }
             
             else {
-                $update = mysqli_query($conn, "update pegawai set nik='".$nik"', nama_pegawai='".$nama_pegawai."', alamat='".$alamat."', gender='".$gender."', no_telp='".$no_telp."', id_jabatan='".$id_jabatan."', username='".$username."', password='".md5($password)."' where id_pegawai = '".$id_pegawai."'") die (mysqli_error($conn));
+                $update=mysqli_query($conn, "UPDATE pegawai set nama_pegawai='".$nama_pegawai."', nik_pegawai='".$nik_pegawai."', alamat='".$alamat."', gender='".$gender."', no_telp='".$no_telp."', id_jabatan='".$id_jabatan."', username='".$username."', password='".md5($password)."' where id_pegawai = '".$id_pegawai."'") or die (mysqli_error($conn));
 
                     if ($update) {
                         echo "<script>alert('Sukses update Pegawai.');location.href='tampil_pegawai.php';</script>";
